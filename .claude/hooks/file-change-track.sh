@@ -1,4 +1,4 @@
-# bodhigrove-claude-hook
+# bodhiorchard-claude-hook
 #!/bin/sh
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/_common.sh"

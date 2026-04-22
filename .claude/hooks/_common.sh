@@ -1,9 +1,9 @@
-# bodhigrove-claude-hook
-# Shared utilities for Bodhigrove hooks.
+# bodhiorchard-claude-hook
+# Shared utilities for Bodhiorchard hooks.
 # Sourced by individual hook scripts — not executed directly.
 
 BACKEND_URL="https://backendchat.ngrok.app"
-TOKEN="${BODHIGROVE_MCP_TOKEN:-}"
+TOKEN="${BODHIORCHARD_MCP_TOKEN:-}"
 
 escape_json() {
   printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g' | tr '\n\r\t' '   '
@@ -62,7 +62,7 @@ bg_post() {
 
 # Read a field from the session context file
 session_file() {
-  echo "${TMPDIR:-/tmp}/.bodhigrove-session-$1.json"
+  echo "${TMPDIR:-/tmp}/.bodhiorchard-session-$1.json"
 }
 
 session_get() {

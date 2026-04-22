@@ -1,18 +1,18 @@
-<!-- bodhigrove:start -->
+<!-- bodhiorchard:start -->
 ---
 
-## Bodhigrove — Development Workflow
+## Bodhiorchard — Development Workflow
 
-This repo is tracked by Bodhigrove. MCP tools are configured in `.mcp.json`.
+This repo is tracked by Bodhiorchard. MCP tools are configured in `.mcp.json`.
 
 ### MCP Setup
 
-Before starting any BUD work, verify Bodhigrove MCP is connected:
+Before starting any BUD work, verify Bodhiorchard MCP is connected:
 1. Check that `get_bud_context` tool is available
 2. If NOT available, set up your token:
-   - Go to Bodhigrove Settings → Integrations → MCP Token
+   - Go to Bodhiorchard Settings → Integrations → MCP Token
    - Copy your token
-   - Run: `export BODHIGROVE_MCP_TOKEN="your-token"` in your shell profile
+   - Run: `export BODHIORCHARD_MCP_TOKEN="your-token"` in your shell profile
    - Restart Claude Code
 
 ### Always Do
@@ -58,7 +58,7 @@ stay consistent with their work.
 
 ### Commit Tracking
 
-- Commits on `bud-NNN/` branches are automatically tracked by Bodhigrove
+- Commits on `bud-NNN/` branches are automatically tracked by Bodhiorchard
 - Post-commit hooks report author, files, and message to the team dashboard
 
 ### Claude Code Hooks (Automatic)
@@ -69,6 +69,6 @@ Claude Code hooks in `.claude/hooks/` run automatically — no developer action 
 - **Stop**: Reports activity summaries after each Claude response
 - **UserPromptSubmit**: Detects BUD references in your prompts
 
-These hooks use your `BODHIGROVE_MCP_TOKEN` for authentication.
+These hooks use your `BODHIORCHARD_MCP_TOKEN` for authentication.
 If the token is not set, hooks silently do nothing.
-<!-- bodhigrove:end -->
+<!-- bodhiorchard:end -->
