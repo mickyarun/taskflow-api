@@ -35,3 +35,8 @@ curl -X POST http://localhost:9001/auth/register \
   -H "Content-Type: application/json" \
   -d '{"email":"alice@test.com","password":"pass1234","full_name":"Alice Kim"}'
 ```
+
+
+## License
+
+MIT.
