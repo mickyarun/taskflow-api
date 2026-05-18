@@ -136,3 +136,19 @@ def bulk_archive(
     for task_id in body.task_ids:
         transition_status(db, task_id, TaskStatus.ARCHIVED)
     return {"archived": len(body.task_ids)}
+
+
+class BulkRestoreRequest(BaseModel):
+    task_ids: list[int]
+
+
+@router.post("/bulk-restore")
+def bulk_restore(
+    body: BulkRestoreRequest,
+    db: Session = Depends(get_db),
+    user: dict = Depends(get_current_user),
+):
+    """Inverse of bulk-archive — restore archived tasks back to To-Do."""
+    for task_id in body.task_ids:
+        transition_status(db, task_id, TaskStatus.TODO)
+    return {"restored": len(body.task_ids)}
