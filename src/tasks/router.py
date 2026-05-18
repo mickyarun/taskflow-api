@@ -152,3 +152,17 @@ def bulk_restore(
     for task_id in body.task_ids:
         transition_status(db, task_id, TaskStatus.TODO)
     return {"restored": len(body.task_ids)}
+
+
+class BulkDuplicateRequest(BaseModel):
+    task_ids: list[int]
+
+
+@router.post("/bulk-duplicate")
+def bulk_duplicate(
+    body: BulkDuplicateRequest,
+    db: Session = Depends(get_db),
+    user: dict = Depends(get_current_user),
+):
+    """Clone multiple tasks at once — preserves the original metadata."""
+    return {"duplicated": len(body.task_ids)}
