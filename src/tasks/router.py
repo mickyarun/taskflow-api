@@ -166,3 +166,19 @@ def bulk_duplicate(
 ):
     """Clone multiple tasks at once — preserves the original metadata."""
     return {"duplicated": len(body.task_ids)}
+
+
+class BulkReopenRequest(BaseModel):
+    task_ids: list[int]
+
+
+@router.post("/bulk-reopen")
+def bulk_reopen(
+    body: BulkReopenRequest,
+    db: Session = Depends(get_db),
+    user: dict = Depends(get_current_user),
+):
+    """Reopen multiple done tasks back to In-Progress."""
+    for task_id in body.task_ids:
+        transition_status(db, task_id, TaskStatus.IN_PROGRESS)
+    return {"reopened": len(body.task_ids)}
