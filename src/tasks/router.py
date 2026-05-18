@@ -118,3 +118,21 @@ def create_comment(
 def list_comments(task_id: int, db: Session = Depends(get_db), user: dict = Depends(get_current_user)):
     """Get comments for a task."""
     return [{"id": c.id, "body": c.body, "author_id": c.author_id} for c in get_comments(db, task_id)]
+
+
+class BulkArchiveRequest(BaseModel):
+    task_ids: list[int]
+
+
+@router.post("/bulk-archive")
+def bulk_archive(
+    body: BulkArchiveRequest,
+    db: Session = Depends(get_db),
+    user: dict = Depends(get_current_user),
+):
+    """Archive multiple tasks in a single call. Used by the board's
+    multi-select "Archive selected" action on the frontend.
+    """
+    for task_id in body.task_ids:
+        transition_status(db, task_id, TaskStatus.ARCHIVED)
+    return {"archived": len(body.task_ids)}
