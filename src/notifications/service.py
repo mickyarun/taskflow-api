@@ -68,6 +68,27 @@ def mark_all_read(db: Session, user_id: int) -> int:
     return count
 
 
+def delete_notification(db: Session, notification_id: int, user_id: int) -> bool:
+    """Delete a single notification owned by the user."""
+    notif = (
+        db.query(Notification)
+        .filter(Notification.id == notification_id, Notification.user_id == user_id)
+        .first()
+    )
+    if not notif:
+        return False
+    db.delete(notif)
+    db.commit()
+    return True
+
+
+def delete_all_notifications(db: Session, user_id: int) -> int:
+    """Delete every notification belonging to the user; returns deleted count."""
+    count = db.query(Notification).filter(Notification.user_id == user_id).delete()
+    db.commit()
+    return count
+
+
 def get_preferences(db: Session, user_id: int) -> NotificationPreference | None:
     """Get notification preferences for a user."""
     return db.query(NotificationPreference).filter(NotificationPreference.user_id == user_id).first()
