@@ -1,0 +1,8 @@
+# Added by Bodhiorchard — MCP server for BUD tooling + code intelligence.
+[mcp_servers.bodhiorchard]
+command = "python3"
+args = [".bodhiorchard/mcp_bridge.py"]
+default_tools_approval_mode = "approve"
+
+[mcp_servers.bodhiorchard.env]
+BODHIORCHARD_BACKEND_URL = "https://backendchat.ngrok.app"

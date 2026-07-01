@@ -1,0 +1,82 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/session-start.sh",
+            "timeout": 15
+          }
+        ],
+        "matcher": "startup|resume"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/post-commit-track.sh",
+            "timeout": 15
+          }
+        ],
+        "matcher": "Bash|Shell|shell"
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/file-change-track.sh",
+            "timeout": 15
+          }
+        ],
+        "matcher": "Edit|Write|str_replace|apply_patch"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/activity-report.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/detect-bud-prompt.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/subagent-start.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .bodhiorchard/hooks/subagent-stop.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
